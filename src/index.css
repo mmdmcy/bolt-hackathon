@@ -1,0 +1,196 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bolt-blue: #0066FF;
+  --bolt-dark: #000000;
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+  100% { transform: translateY(0px); }
+}
+
+@keyframes neon-pulse {
+  0%, 100% { 
+    text-shadow: 
+      0 0 7px #fff,
+      0 0 10px #fff,
+      0 0 21px #fff,
+      0 0 42px var(--bolt-blue),
+      0 0 82px var(--bolt-blue),
+      0 0 92px var(--bolt-blue),
+      0 0 102px var(--bolt-blue),
+      0 0 151px var(--bolt-blue);
+  }
+  50% { 
+    text-shadow: 
+      0 0 4px #fff,
+      0 0 7px #fff,
+      0 0 13px #fff,
+      0 0 25px var(--bolt-blue),
+      0 0 45px var(--bolt-blue),
+      0 0 55px var(--bolt-blue),
+      0 0 65px var(--bolt-blue),
+      0 0 85px var(--bolt-blue);
+  }
+}
+
+@keyframes gradient-shift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes glitch {
+  0% {
+    clip-path: inset(40% 0 61% 0);
+    transform: translate(-2px, -2px);
+  }
+  20% {
+    clip-path: inset(92% 0 1% 0);
+    transform: translate(2px, 2px);
+  }
+  40% {
+    clip-path: inset(43% 0 1% 0);
+    transform: translate(-2px, 2px);
+  }
+  60% {
+    clip-path: inset(25% 0 58% 0);
+    transform: translate(2px, -2px);
+  }
+  80% {
+    clip-path: inset(54% 0 7% 0);
+    transform: translate(-2px, 2px);
+  }
+  100% {
+    clip-path: inset(58% 0 43% 0);
+    transform: translate(2px, -2px);
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+  will-change: transform;
+}
+
+.animate-neon {
+  animation: neon-pulse 2s infinite;
+}
+
+.animate-glitch {
+  position: relative;
+}
+
+.animate-glitch::before,
+.animate-glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.animate-glitch::before {
+  animation: glitch 3s infinite linear alternate-reverse;
+  color: var(--bolt-blue);
+  z-index: -1;
+}
+
+.animate-glitch::after {
+  animation: glitch 2s infinite linear alternate;
+  color: #ffffff;
+  z-index: -2;
+}
+
+.glass-card {
+  backdrop-filter: blur(12px);
+  background: linear-gradient(
+    135deg,
+    rgba(0, 102, 255, 0.1) 0%,
+    rgba(0, 102, 255, 0.05) 100%
+  );
+  border: 1px solid rgba(0, 102, 255, 0.18);
+  transition: all 0.3s ease;
+  will-change: transform;
+}
+
+.glass-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px rgba(0, 102, 255, 0.2);
+  background: linear-gradient(
+    135deg,
+    rgba(0, 102, 255, 0.15) 0%,
+    rgba(0, 102, 255, 0.08) 100%
+  );
+}
+
+.section-1 {
+  background: linear-gradient(45deg, #000000, #000B1F, #001440, #000000);
+  background-size: 400% 400%;
+  animation: gradient-shift 15s ease infinite;
+}
+
+.section-2 {
+  background: linear-gradient(45deg, #000B1F, #001440, #002060, #000B1F);
+  background-size: 400% 400%;
+  animation: gradient-shift 15s ease infinite;
+}
+
+.section-3 {
+  background: linear-gradient(45deg, #001440, #002060, #002B80, #001440);
+  background-size: 400% 400%;
+  animation: gradient-shift 15s ease infinite;
+}
+
+.section-4 {
+  background: linear-gradient(45deg, #002060, #002B80, #0066FF, #002060);
+  background-size: 400% 400%;
+  animation: gradient-shift 15s ease infinite;
+}
+
+.text-stroke {
+  -webkit-text-stroke: 2px var(--bolt-blue);
+  paint-order: stroke fill;
+}
+
+.neon-border {
+  box-shadow:
+    0 0 5px #fff,
+    0 0 10px #fff,
+    0 0 20px var(--bolt-blue),
+    0 0 40px var(--bolt-blue);
+}
+
+.bolt-gradient {
+  background: linear-gradient(
+    90deg,
+    var(--bolt-dark),
+    var(--bolt-blue),
+    #ffffff,
+    var(--bolt-blue),
+    var(--bolt-dark)
+  );
+  -webkit-background-clip: text;
+  color: transparent;
+  background-size: 400% 400%;
+  animation: gradient-shift 8s linear infinite;
+}
+
+.grid-bg {
+  background-image: 
+    linear-gradient(var(--bolt-blue) 1px, transparent 1px),
+    linear-gradient(90deg, var(--bolt-blue) 1px, transparent 1px);
+  background-size: 50px 50px;
+  background-position: center center;
+  opacity: 0.1;
+}
